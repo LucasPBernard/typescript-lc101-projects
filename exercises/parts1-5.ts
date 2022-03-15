@@ -1,3 +1,4 @@
+import { SpaceLocation } from './SpaceLocation';
 // URL for the instructions: 
 // https://education.launchcode.org/intro-to-professional-web-dev/chapters/typescript/exercises.html 
 
@@ -23,7 +24,8 @@ console.log(`${spacecraftName} would take ${daysToMars} days to get to Mars.`);
 
 
 // Part 3: Create a Function ("getDaysToLocation")
-
+printDaysToLocation(location: SpaceLocation) {
+    console.log(`${this.name} would take ${this.getDaysToLocation(location.kilometersAway)} days to get to ${location.name}.`);
 
 
 // Move your output statement from part 2 here. Update the template literal to call
@@ -33,7 +35,26 @@ console.log(`${spacecraftName} would take ${daysToMars} days to get to Mars.`);
 
 
 // Part 4: Create a Spacecraft Class
-
+class Spacecraft {
+    milesPerKilometer: number = 0.621;
+    name: string;
+    speedMph: number;
+ 
+    constructor(name: string, speedMph: number) {
+       this.name = name;
+       this.speedMph = speedMph;
+    }
+ 
+    getDaysToLocation(kilometersAway: number): number {
+       let milesAway: number = kilometersAway * this.milesPerKilometer;
+       let hours: number = milesAway / this.speedMph;
+       return hours / 24;
+    }
+ 
+    printDaysToLocation(location: SpaceLocation) {
+       console.log(`${this.name} would take ${this.getDaysToLocation(location.kilometersAway)} days to get to ${location.name}.`);
+    }
+ }
 
 
 
